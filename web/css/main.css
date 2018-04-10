@@ -1,0 +1,78 @@
+body {
+  background-color: #e2e2e2;
+}
+
+.nav-item.active {
+  color: red !important;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #000;
+  font-weight: bold;
+}
+
+.list-group-item.active {
+  background-color: #007bffbf;
+}
+
+.list-group-item.active--anim {
+  background: linear-gradient(90deg, rgba(0, 118, 255, 0.74), white);
+  animation: Gradient 3s ease infinite;
+  -webkit-background-size: 200% 200%;
+  background-size: 200% 200%;
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.list-group-item {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  left: 550px;
+  top: 8px;
+
+  min-width: 300px;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.opacity--js {
+  visibility: visible;
+  opacity: 1;
+}
+
+.no-opacity--js {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tooltip-close--js {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.list-group-item--notice {
+  margin: 10px 0;
+  line-height: .5;
+}
