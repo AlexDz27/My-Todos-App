@@ -17,6 +17,10 @@ $router->initialize();
 /////////////////////////////////////////////////////////////
 
 
+echo "<pre>";
+print_r(__FILE__);
+echo "</pre>";
+
 function echoSm($sm): void {
 	echo $sm;
 }

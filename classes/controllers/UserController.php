@@ -74,7 +74,6 @@ class UserController extends BaseController {
 
 
 		if (isset($_POST['submit-sign-in'])) {
-			echo 'submit';
 			$username = FormValidation::sanitize($_POST['username']);
 			$password = FormValidation::sanitize($_POST['password']);
 
