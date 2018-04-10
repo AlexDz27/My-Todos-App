@@ -1,8 +1,6 @@
 <?php
 
 function __autoload($filename) {
-	$filename = strtolower($filename);
-	echo $filename . '<br>';
 	$filename = 'classes' . DIRECTORY_SEPARATOR . $filename;
 	require_once str_replace("\\", DIRECTORY_SEPARATOR, $filename) . '.php';
 }
@@ -18,13 +16,3 @@ $router->initialize();
 
 /////////////////////////////////////////////////////////////
 
-
-echo "<pre>";
-print_r(__FILE__);
-echo "</pre>";
-
-function echoSm($sm): void {
-	echo $sm;
-}
-
-echoSm('qweqweqweqweqweqweqwqweqweqweqweqwe');

@@ -3,7 +3,7 @@
 namespace controllers;
 
 use models\UserModel;
-use Services\FormValidation;
+use services\FormValidation;
 
 class UserController extends BaseController {
 
