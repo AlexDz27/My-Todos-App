@@ -17,7 +17,7 @@ $router->initialize();
 /////////////////////////////////////////////////////////////
 
 
-function echoSm($sm) {
+function echoSm($sm): void {
 	echo $sm;
 }
 
