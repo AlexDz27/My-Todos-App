@@ -16,3 +16,9 @@ $router->initialize();
 
 /////////////////////////////////////////////////////////////
 
+
+function echoSm($sm) {
+	echo $sm;
+}
+
+echoSm('qweqweqweqweqweqweqwqweqweqweqweqwe');
