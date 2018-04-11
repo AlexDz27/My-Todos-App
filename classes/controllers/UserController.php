@@ -126,9 +126,6 @@ class UserController extends BaseController {
 	public function actionChangeUserData() {
 		$result = null;
 
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
 		$changedData = $_POST; // todo: '?? *default user data*'
 
 		if ($changedData) {

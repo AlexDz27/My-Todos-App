@@ -8,6 +8,12 @@
           <li class="nav-item <?php if (\services\Router::getUri() === '') echo 'active' ?>">
             <a class="nav-link" href="/">Home</a>
           </li>
+          <li class="nav-item <?php if (\services\Router::getUri() === 'about') echo 'active' ?>">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item <?php if (\services\Router::getUri() === 'contacts') echo 'active' ?>">
+            <a class="nav-link" href="/contacts">Contacts</a>
+          </li>
         </ul>
 
         <?php if ($isUserLogged): ?>

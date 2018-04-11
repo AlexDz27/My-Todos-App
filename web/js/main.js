@@ -1,17 +1,50 @@
+/* Utils */
+const KEY_ENTER = 13;
+// todo: window location without local (agnostic)
+
+
+let xhr = null;
+if (window.XMLHttpRequest) {
+  xhr = new XMLHttpRequest();
+} else {
+  xhr = new ActiveXObject('Microsoft.XMLHTTP')
+}
+
+function makeRequest(type, url, requestObj) {
+  if (!xhr) {
+    console.log('Cannot create an XHR instance');
+    return false;
+  }
+
+  xhr.addEventListener('load', respondWithData);
+  xhr.open(type, url);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send(`username=${encodeURIComponent(requestObj.username)}&email=${requestObj.email}`);
+}
+
+function respondWithData() {
+  const response = getResponseData();
+  // Do something if needed
+}
+
+function getResponseData() {
+  try {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        return xhr.responseText;
+      } else {
+        console.log('There was a problem with the request');
+      }
+    }
+  } catch (e) {
+    console.log('Caught Exception ' + e.description);
+  }
+}
+
 /* Profile block of code */
 
 if ((window.location.href === 'http://mytodos.os/profile') || (window.location.href === 'http://mytodos.os/profile/')) {
-  const KEY_ENTER = 13;
-
-
-  let xhr = null;
-  if (window.XMLHttpRequest) {
-    xhr = new XMLHttpRequest();
-  } else {
-    xhr = new ActiveXObject('Microsoft.XMLHTTP"')
-  }
-
-
+  // Style Related part
   const unameSpan = document.querySelector('.change-uname--js');
   const unameListItem = document.querySelector('.list-group-item--uname');
   const unameHeading = document.querySelector('.uname-heading--js');
@@ -47,6 +80,7 @@ if ((window.location.href === 'http://mytodos.os/profile') || (window.location.h
     })
   });
 
+  // AJAX Related part
   userDataChangeSpans.forEach((span) => {
     span.addEventListener('keydown', (evt) => {
       if (evt.keyCode === KEY_ENTER) {
@@ -66,40 +100,57 @@ if ((window.location.href === 'http://mytodos.os/profile') || (window.location.h
       }
     })
   });
-
-
-
-  function makeRequest(type, url, requestObj) {
-    if (!xhr) {
-      console.log('Cannot create an XHR instance');
-      return false;
-    }
-
-    xhr.addEventListener('load', respondWithData);
-    xhr.open(type, url);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(`username=${encodeURIComponent(requestObj.username)}&email=${requestObj.email}`);
-  }
-
-  function respondWithData() {
-    const response = getResponseData();
-    // Do something if needed
-  }
-
-  function getResponseData() {
-    try {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          return xhr.responseText;
-        } else {
-          console.log('There was a problem with the request');
-        }
-      }
-    } catch (e) {
-      console.log('Caught Exception ' + e.description);
-    }
-  }
 }
 
 
-/* Smth else */
+/* Main page (todos list) block */
+
+if (window.location.href === 'http://mytodos.os/') {
+  // 2) ну можно сделать в принципе то же самое - тупо сделать array, собрать в него все данные
+  //, засунуть в json и отослать
+
+  const todosList = document.querySelector('.todos-list');
+  // Turning HTML collection to array
+  let todoItems = [].slice.call(document.querySelectorAll('.todos-list__todo-item'));
+
+  const newTodoInput = document.querySelector('.todos-list__new-todo');
+  newTodoInput.addEventListener('keydown', (evt) => {
+    if (evt.keyCode === KEY_ENTER && newTodoInput.value !== '') {
+      evt.preventDefault();
+      const newTodoItemTitle = newTodoInput.value;
+      newTodoInput.value = '';
+
+      const newTodoItem = document.createElement('li');
+      newTodoItem.textContent = newTodoItemTitle;
+      newTodoItem.classList.add('todos-list__todo-item');
+      newTodoItem.classList.add('list-group-item');
+
+      const newTodoItemCheck = document.createElement('input');
+      newTodoItemCheck.type = 'checkbox';
+      newTodoItemCheck.classList.add('todo-item__checkbox');
+      newTodoItem.appendChild(newTodoItemCheck);
+
+      todosList.appendChild(newTodoItem);
+      todoItems.push(newTodoItem);
+
+
+      let newTodosArr = [];
+
+      todoItems.map((todoItem) => {
+        const todoItemData = {};
+
+        const todoItemTitle = todoItem.textContent.trim();
+        const todoItemIsDone = todoItem.children[0].checked;
+
+        todoItemData.title = todoItemTitle;
+        todoItemData.isDone = todoItemIsDone;
+
+        newTodosArr.push(todoItemData);
+      });
+
+      const newTodosJson = JSON.stringify(newTodosArr);
+
+      makeRequest('POST', 'http://mytodos.os/newTodos', newTodosJson); // todo: makeRequestJSON
+    }
+  });
+}

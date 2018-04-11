@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-6 m-auto">
 
-        <p>Contacts page</p>
+        <p>Email: alexeydzyuba27@gmail.com</p>
 
       </div>
     </div>

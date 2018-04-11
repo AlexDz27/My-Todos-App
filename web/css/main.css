@@ -76,3 +76,23 @@ body {
   margin: 10px 0;
   line-height: .5;
 }
+
+
+.todos-list__todo-item {
+  position: relative;
+  text-align: center;
+}
+
+.todo-item__checkbox {
+  position: relative;
+  width: 50px;
+  height: 20px;
+  margin-top: 3px;
+}
+
+.todos-list__new-todo {
+  width: 300px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}

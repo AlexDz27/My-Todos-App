@@ -3,15 +3,24 @@
     <div class="row">
       <div class="col-6 m-auto">
 
-<!--        --><?php //foreach ($todos as $todo): ?>
-<!--          <section class="item">-->
-<!--            <h1>--><?//= $todo['title']; ?><!--</h1>-->
-<!--            <p>--><?//= $todo['content']; ?><!--</p>-->
-<!--            <a href="items/--><?//= $todo['id']; ?><!--">View one item</a>-->
-<!--          </section>-->
-<!--        --><?php //endforeach; ?>
         <p class="text-center alert-dark font-weight-bold">Hello, <?=$userName?></p>
         <h1 class="display-3 text-center">My Todos</h1>
+
+	      <?php if (!empty($todos)): ?>
+          <section class="todos-list-section mt-4">
+            <ul class="todos-list list-group" data-todos-list-id="<?= $todosId; ?>">
+              <li class="list-group-item">
+                <input class="todos-list__new-todo" placeholder="What needs to be done?">
+              </li>
+              <?php foreach ($todos as $todo): ?>
+                <li class="todos-list__todo-item list-group-item">
+                  <?= $todo->title; ?>
+                  <input class="todo-item__checkbox" type="checkbox" <?php if ($todo->isDone) echo 'checked' ?>>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </section>
+	      <?php endif; ?>
 
       </div>
     </div>

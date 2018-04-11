@@ -1,36 +1,38 @@
 <?php
 
-namespace models;
+// todo: interface for todos
 
-use services\Router;
+namespace models;
 
 
 class TodoModel extends BaseModel {
 
-	/*public function getAllItems(): array {
-		$query = "SELECT * FROM `items` LIMIT 5";
-		$payload = $this->db->query($query);
-		$payload->setFetchMode(\PDO::FETCH_ASSOC);
+	protected $userId;
 
-		$items = $payload->fetchAll();
-
-		return $items;
+	public function __construct() {
+		parent::__construct();
+		$this->userId = UserModel::getUserSessId();
 	}
 
-	public function getOneItemById() {
-		$userRequestURI = Router::getUri();
-		$itemId = explode('/', $userRequestURI)[1];
+	// Можно брать тудусы по айди юзера даже (ну да, там будет джоин -> Nea pohody)
 
-		$query = "SELECT * FROM `items` WHERE id = :itemId";
+	public function getAllUserTodos() {
+		$query = "SELECT id, todos FROM todos_lists WHERE user_id = :userId";
+		// todo: add $this->userId
 
 		$payload = $this->db->prepare($query);
-		$payload->bindParam(':itemId', $itemId, \PDO::PARAM_INT);
+		$payload->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
 		$payload->setFetchMode(\PDO::FETCH_ASSOC);
 		$payload->execute();
 
-		$item = $payload->fetch();
+		$payload = $payload->fetch();
 
-		return $item; // can be either array (item fetched) or false if not fetched
-	}*/
+		$payloadArr = [];
+
+		$payloadArr[] = $payload['id'];
+		$payloadArr[] = json_decode($payload['todos']);
+
+		return $payloadArr;
+	}
 
 }

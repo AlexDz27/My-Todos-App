@@ -39,15 +39,17 @@ class TodoController extends BaseController {
 
 	public $todoModel;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 		$this->todoModel = new TodoModel();
 	}
 
 	public function actionViewAllTodos(): void {
-//		$todos = $this->model->getAllItems();
+		$todosData = $this->todoModel->getAllUserTodos();
 
-//		$this->mainRender('index.php', ['todos' => $todos]);
+		$todosId = $todosData[0];
+		$todos = $todosData[1];
+
 		$userName = 'Guest';
 		if (isset($_SESSION['userId'])) {
 			$userName = $this->model->getUserById($_SESSION['userId'])['username'];
@@ -55,7 +57,15 @@ class TodoController extends BaseController {
 
 		$isUserLogged = UserModel::isUserLogged();
 
-		$this->mainRender('index.php', ['isUserLogged' => $isUserLogged, 'userName' => $userName]);
+		$this->mainRender('index.php', ['isUserLogged' => $isUserLogged, 'userName' => $userName, 'todos' => $todos, 'todosId' => $todosId]);
+	}
+
+	public function actionNewTodos() {
+		echo 'new';
+		echo '<br>';
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
 	}
 
 }

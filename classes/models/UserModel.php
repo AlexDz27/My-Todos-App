@@ -92,7 +92,6 @@ class UserModel extends BaseModel {
 
 	public function updateUserDataById($userId, $changedData) {
 		$query = "UPDATE users SET username = :newUsername, email = :newEmail WHERE id = :userId";
-//		$query = "UPDATE users SET username = :newUsername WHERE id = :userId";
 
 		$payload = $this->db->prepare($query);
 		$payload->bindParam(':newUsername', $changedData['username'], \PDO::PARAM_STR);

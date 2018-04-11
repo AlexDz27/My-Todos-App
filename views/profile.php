@@ -29,24 +29,24 @@
               </span>
             </li>
 
-            <li class="list-group-item list-group-item--notice">
-              You can also change your password:
-            </li>
-
-            <li class="list-group-item">
-              Old password:
-              <span data-change="email" contenteditable="true"
-                    class="change--js">
-                <input type="password" data-change="old-pass">
-              </span>
-            </li>
-            <li class="list-group-item">
-              New password:
-              <span data-change="email" contenteditable="true"
-                    class="change--js">
-                <input type="password" data-change="new-pass">
-              </span>
-            </li>
+<!--            <li class="list-group-item list-group-item--notice">-->
+<!--              You can also change your password:-->
+<!--            </li>-->
+<!---->
+<!--            <li class="list-group-item">-->
+<!--              Old password:-->
+<!--              <span data-change="email" contenteditable="true"-->
+<!--                    class="change--js">-->
+<!--                <input type="password" data-change="old-pass">-->
+<!--              </span>-->
+<!--            </li>-->
+<!--            <li class="list-group-item">-->
+<!--              New password:-->
+<!--              <span data-change="email" contenteditable="true"-->
+<!--                    class="change--js">-->
+<!--                <input type="password" data-change="new-pass">-->
+<!--              </span>-->
+<!--            </li>-->
           </ul>
         </section>
 
