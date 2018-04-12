@@ -117,7 +117,7 @@ if ((window.location.href === 'http://mytodos.os/profile') || (window.location.h
 
 /* Main page (todos list) block */
 
-if (window.location.href === 'https://frozen-reef-37195.herokuapp.com') {
+if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
   let newTodosJson = null;
 
   const todosList = document.querySelector('.todos-list');
