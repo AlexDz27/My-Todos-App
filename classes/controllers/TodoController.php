@@ -7,36 +7,6 @@ use models\UserModel;
 
 class TodoController extends BaseController {
 
-	/*public $model;
-
-	function __construct() {
-		$this->model = new ItemModel();
-	}
-
-	public function actionViewAllItems(): void {
-		$items = $this->model->getAllItems();
-
-		$this->mainRender('index.php', ['items' => $items]);
-	}
-
-	public function actionViewOneItem(): void {
-		$item = $this->model->getOneItemById();
-
-		if (!$item) { // If there is no item with such an id,
-			$this->render404Page();
-		} else {
-			$this->mainRender('one_item.php', ['item' => $item]);
-		}
-	}
-
-	public function actionAboutPage(): void {
-		$this->mainRender('about.php');
-	}
-
-	public function actionContactsPage(): void {
-		$this->mainRender('contacts.php');
-	}*/
-
 	public $todoModel;
 
 	public function __construct() {
@@ -64,7 +34,6 @@ class TodoController extends BaseController {
 		$changedTodos = $_POST['changedTodos'];
 
 		$result = $this->todoModel->updateUserTodos($changedTodos);
-		var_dump($result);
 	}
 
 }
