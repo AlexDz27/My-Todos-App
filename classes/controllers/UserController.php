@@ -100,7 +100,7 @@ class UserController extends BaseController {
 
 					$isTodoListCreated = $this->model->createEmptyUserTodos();
 
-					header('Location: /');
+//					header('Location: /');
 				}
 			}
 		}
