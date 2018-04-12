@@ -146,7 +146,7 @@ if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
 
       newTodosJson = getTodosData();
 
-      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
+      makeRequestJSON('POST', 'https://frozen-reef-37195.herokuapp.com/newTodos', newTodosJson);
     }
   });
 
