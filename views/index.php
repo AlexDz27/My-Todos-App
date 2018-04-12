@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6 m-auto">
+<!--        todo: if not logged  - else ...-->
 
         <p class="text-center alert-dark font-weight-bold">Hello, <?=$userName?></p>
         <h1 class="display-3 text-center">My Todos</h1>

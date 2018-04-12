@@ -61,11 +61,10 @@ class TodoController extends BaseController {
 	}
 
 	public function actionNewTodos() {
-		echo 'new';
-		echo '<br>';
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
+		$changedTodos = $_POST['changedTodos'];
+
+		$result = $this->todoModel->updateUserTodos($changedTodos);
+		var_dump($result);
 	}
 
 }

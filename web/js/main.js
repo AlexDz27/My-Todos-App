@@ -22,6 +22,18 @@ function makeRequest(type, url, requestObj) {
   xhr.send(`username=${encodeURIComponent(requestObj.username)}&email=${requestObj.email}`);
 }
 
+function makeRequestJSON(type, url, requestJSON) {
+  if (!xhr) {
+    console.log('Cannot create an XHR instance');
+    return false;
+  }
+
+  xhr.addEventListener('load', respondWithData);
+  xhr.open(type, url);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send(`changedTodos=${encodeURIComponent(requestJSON)}`);
+}
+
 function respondWithData() {
   const response = getResponseData();
   // Do something if needed
@@ -150,7 +162,7 @@ if (window.location.href === 'http://mytodos.os/') {
 
       const newTodosJson = JSON.stringify(newTodosArr);
 
-      makeRequest('POST', 'http://mytodos.os/newTodos', newTodosJson); // todo: makeRequestJSON
+      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson); // todo: makeRequestJSON
     }
   });
 }

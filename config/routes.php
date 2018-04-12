@@ -13,6 +13,6 @@ return [
 	'profile/change' => ['ctrlName' => UserController::class, 'actionName' => 'actionChangeUserData'],
 	'profile' => ['ctrlName' => UserController::class, 'actionName' => 'actionProfile'],
 	'logout' => ['ctrlName' => UserController::class, 'actionName' => 'actionLogout'],
-	'/newTodos' => [ 'ctrlName' => TodoController::class, 'actionName' => 'actionNewTodos'],
+	'newTodos' => [ 'ctrlName' => TodoController::class, 'actionName' => 'actionNewTodos'],
 	'' => [ 'ctrlName' => TodoController::class, 'actionName' => 'actionViewAllTodos']
 ];

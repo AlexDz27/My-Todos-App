@@ -18,7 +18,6 @@ class TodoModel extends BaseModel {
 
 	public function getAllUserTodos() {
 		$query = "SELECT id, todos FROM todos_lists WHERE user_id = :userId";
-		// todo: add $this->userId
 
 		$payload = $this->db->prepare($query);
 		$payload->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
@@ -33,6 +32,17 @@ class TodoModel extends BaseModel {
 		$payloadArr[] = json_decode($payload['todos']);
 
 		return $payloadArr;
+	}
+
+	public function updateUserTodos($changedTodosJSON) {
+		$query = "UPDATE todos_lists SET todos = :changedTodos WHERE user_id = :userId";
+
+		$payload = $this->db->prepare($query);
+		$payload->bindParam(':changedTodos', $changedTodosJSON, \PDO::PARAM_STR);
+		$payload->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
+		$payload->execute();
+
+		return $payload;
 	}
 
 }
