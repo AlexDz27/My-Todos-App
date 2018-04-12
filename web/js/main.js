@@ -55,7 +55,7 @@ function getResponseData() {
 
 /* Profile block of code */
 
-if ((window.location.href === 'http://mytodos.os/profile') || (window.location.href === 'http://mytodos.os/profile/')) {
+if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile') || (window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/')) {
   // Style Related part
   const unameSpan = document.querySelector('.change-uname--js');
   const unameListItem = document.querySelector('.list-group-item--uname');
