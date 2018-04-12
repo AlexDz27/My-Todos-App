@@ -118,8 +118,7 @@ if ((window.location.href === 'http://mytodos.os/profile') || (window.location.h
 /* Main page (todos list) block */
 
 if (window.location.href === 'http://mytodos.os/') {
-  // 2) ну можно сделать в принципе то же самое - тупо сделать array, собрать в него все данные
-  //, засунуть в json и отослать
+  let newTodosJson = null;
 
   const todosList = document.querySelector('.todos-list');
   // Turning HTML collection to array
@@ -145,24 +144,37 @@ if (window.location.href === 'http://mytodos.os/') {
       todosList.appendChild(newTodoItem);
       todoItems.push(newTodoItem);
 
+      newTodosJson = getTodosData();
 
-      let newTodosArr = [];
-
-      todoItems.map((todoItem) => {
-        const todoItemData = {};
-
-        const todoItemTitle = todoItem.textContent.trim();
-        const todoItemIsDone = todoItem.children[0].checked;
-
-        todoItemData.title = todoItemTitle;
-        todoItemData.isDone = todoItemIsDone;
-
-        newTodosArr.push(todoItemData);
-      });
-
-      const newTodosJson = JSON.stringify(newTodosArr);
-
-      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson); // todo: makeRequestJSON
+      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
     }
   });
+
+  let todoItemsChecks = document.querySelectorAll('.todo-item__checkbox');
+
+  todoItemsChecks.forEach((check) => {
+    check.addEventListener('click', () => {
+      newTodosJson = getTodosData();
+
+      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
+    })
+  });
+
+  function getTodosData() {
+    let newTodosArr = [];
+
+    todoItems.map((todoItem) => {
+      const todoItemData = {};
+
+      const todoItemTitle = todoItem.textContent.trim();
+      const todoItemIsDone = todoItem.children[0].checked;
+
+      todoItemData.title = todoItemTitle;
+      todoItemData.isDone = todoItemIsDone;
+
+      newTodosArr.push(todoItemData);
+    });
+
+    return JSON.stringify(newTodosArr);
+  }
 }

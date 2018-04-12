@@ -29,6 +29,16 @@ class UserModel extends BaseModel {
 		return $payload->execute();
 	}
 
+	public function createEmptyUserTodos() {
+		$query = "INSERT INTO todos_lists (user_id) VALUES (:userId)";
+		$userSessId = self::getUserSessId();
+
+		$payload = $this->db->prepare($query);
+		$payload->bindParam(':userId', $userSessId, \PDO::PARAM_INT);
+
+		return $payload->execute();
+	}
+
 	public function authenticateUser($userId) {
 		$_SESSION['userId'] = $userId;
 	}

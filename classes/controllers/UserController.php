@@ -55,8 +55,6 @@ class UserController extends BaseController {
 
 			if (empty($errors)) {
 				$isUserCreated = $this->model->signupUser($username, $email, $password);
-
-				header('Location: /sign-in');
 			}
 		}
 
@@ -99,6 +97,8 @@ class UserController extends BaseController {
 				} else {
 					// Everything is correct, the user exists and now can proceed to todos page
 					$didUserLog = $this->model->authenticateUser($userId);
+
+					$isTodoListCreated = $this->model->createEmptyUserTodos();
 
 					header('Location: /');
 				}
