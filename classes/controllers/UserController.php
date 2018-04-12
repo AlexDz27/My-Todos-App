@@ -99,8 +99,9 @@ class UserController extends BaseController {
 					$didUserLog = $this->model->authenticateUser($userId);
 
 					$isTodoListCreated = $this->model->createEmptyUserTodos();
+					var_dump($isTodoListCreated);
 
-					header('Location: /');
+//					header('Location: /');
 				}
 			}
 		}
