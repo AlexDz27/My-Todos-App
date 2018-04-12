@@ -34,7 +34,7 @@ class UserModel extends BaseModel {
 		$userSessId = self::getUserSessId();
 
 		$payload = $this->db->prepare($query);
-		$payload->bindParam(':userId', $userSessId, \PDO::PARAM_STR);
+		$payload->bindParam(':userId', $userSessId, \PDO::PARAM_INT);
 
 		return $payload->execute();
 	}

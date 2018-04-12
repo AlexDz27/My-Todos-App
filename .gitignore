@@ -1,3 +1,4 @@
 .idea/
 vendor/
 *.sql
+web/js/mainh.js

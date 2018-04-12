@@ -55,7 +55,7 @@ function getResponseData() {
 
 /* Profile block of code */
 
-if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/change') || (window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/change/')) {
+if ((window.location.href === 'http://mytodos.os/profile/change') || (window.location.href === 'http://mytodos.os/profile/change/')) {
   // Style Related part
   const unameSpan = document.querySelector('.change-uname--js');
   const unameListItem = document.querySelector('.list-group-item--uname');
@@ -108,7 +108,7 @@ if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/c
           changedDataObj[colomnToChange] = changedData; // Writing properties and values to the request object
         });
 
-        makeRequest('POST', 'https://frozen-reef-37195.herokuapp.com/profile/change', changedDataObj);
+        makeRequest('POST', 'http://mytodos.os/profile/change', changedDataObj);
       }
     })
   });
@@ -117,12 +117,14 @@ if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/c
 
 /* Main page (todos list) block */
 
-if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
+if (window.location.href === 'http://mytodos.os/') {
   let newTodosJson = null;
 
   const todosList = document.querySelector('.todos-list');
   // Turning HTML collection to array
   let todoItems = [].slice.call(document.querySelectorAll('.todos-list__todo-item'));
+  let todoItemsChecks = document.querySelectorAll('.todo-item__checkbox');
+  console.log(todoItemsChecks);
 
   const newTodoInput = document.querySelector('.todos-list__new-todo');
   newTodoInput.addEventListener('keydown', (evt) => {
@@ -143,22 +145,26 @@ if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
 
       todosList.appendChild(newTodoItem);
       todoItems.push(newTodoItem);
+      todoItemsChecks = document.querySelectorAll('.todo-item__checkbox');
+      todoItemsChecks.forEach((check) => {
+        check.addEventListener('click', () => {
+          newTodosJson = getTodosData();
+
+          makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
+        })
+      });
 
       newTodosJson = getTodosData();
-      console.log(newTodosJson);
 
-      makeRequestJSON('POST', 'https://frozen-reef-37195.herokuapp.com/newTodos', newTodosJson);
+      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
     }
   });
-
-  let todoItemsChecks = document.querySelectorAll('.todo-item__checkbox');
 
   todoItemsChecks.forEach((check) => {
     check.addEventListener('click', () => {
       newTodosJson = getTodosData();
-      console.log(newTodosJson);
 
-      makeRequestJSON('POST', 'https://frozen-reef-37195.herokuapp.com/newTodos', newTodosJson);
+      makeRequestJSON('POST', 'http://mytodos.os/newTodos', newTodosJson);
     })
   });
 
