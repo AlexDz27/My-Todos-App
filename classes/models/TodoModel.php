@@ -14,8 +14,6 @@ class TodoModel extends BaseModel {
 		$this->userId = UserModel::getUserSessId();
 	}
 
-	// Можно брать тудусы по айди юзера даже (ну да, там будет джоин -> Nea pohody)
-
 	public function getAllUserTodos() {
 		$query = "SELECT id, todos FROM todos_lists WHERE user_id = :userId";
 
@@ -36,6 +34,7 @@ class TodoModel extends BaseModel {
 
 	public function updateUserTodos($changedTodosJSON) {
 		$query = "UPDATE todos_lists SET todos = :changedTodos WHERE user_id = :userId";
+//		$userSessId = UserModel::getUserSessId();
 
 		$payload = $this->db->prepare($query);
 		$payload->bindParam(':changedTodos', $changedTodosJSON, \PDO::PARAM_STR);

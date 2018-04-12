@@ -55,7 +55,7 @@ function getResponseData() {
 
 /* Profile block of code */
 
-if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile') || (window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/')) {
+if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/change') || (window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile/change/')) {
   // Style Related part
   const unameSpan = document.querySelector('.change-uname--js');
   const unameListItem = document.querySelector('.list-group-item--uname');
@@ -145,6 +145,7 @@ if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
       todoItems.push(newTodoItem);
 
       newTodosJson = getTodosData();
+      console.log(newTodosJson);
 
       makeRequestJSON('POST', 'https://frozen-reef-37195.herokuapp.com/newTodos', newTodosJson);
     }
@@ -155,6 +156,7 @@ if (window.location.href === 'https://frozen-reef-37195.herokuapp.com/') {
   todoItemsChecks.forEach((check) => {
     check.addEventListener('click', () => {
       newTodosJson = getTodosData();
+      console.log(newTodosJson);
 
       makeRequestJSON('POST', 'https://frozen-reef-37195.herokuapp.com/newTodos', newTodosJson);
     })
