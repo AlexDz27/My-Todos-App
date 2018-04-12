@@ -55,7 +55,7 @@ function getResponseData() {
 
 /* Profile block of code */
 
-if ((window.location.href === 'http://mytodos.os/profile/change') || (window.location.href === 'http://mytodos.os/profile/change/')) {
+if ((window.location.href === 'http://mytodos.os/profile') || (window.location.href === 'http://mytodos.os/profile/')) {
   // Style Related part
   const unameSpan = document.querySelector('.change-uname--js');
   const unameListItem = document.querySelector('.list-group-item--uname');
