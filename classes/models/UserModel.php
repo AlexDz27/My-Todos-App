@@ -32,10 +32,9 @@ class UserModel extends BaseModel {
 	public function createEmptyUserTodos() {
 		$query = "INSERT INTO todos_lists (user_id) VALUES (:userId)";
 		$userSessId = self::getUserSessId();
-		var_dump($userSessId);
 
 		$payload = $this->db->prepare($query);
-		$payload->bindParam(':userId', $userSessId, \PDO::PARAM_INT);
+		$payload->bindParam(':userId', $userSessId, \PDO::PARAM_STR);
 
 		return $payload->execute();
 	}
