@@ -34,6 +34,7 @@ class TodoController extends BaseController {
 		$changedTodos = $_POST['changedTodos'];
 
 		$result = $this->todoModel->updateUserTodos($changedTodos);
+		var_dump($result);
 	}
 
 }
