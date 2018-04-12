@@ -108,7 +108,7 @@ if ((window.location.href === 'https://frozen-reef-37195.herokuapp.com/profile')
           changedDataObj[colomnToChange] = changedData; // Writing properties and values to the request object
         });
 
-        makeRequest('POST', 'http://mytodos.os/profile/change', changedDataObj);
+        makeRequest('POST', 'https://frozen-reef-37195.herokuapp.com/change', changedDataObj);
       }
     })
   });
